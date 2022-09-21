@@ -1,0 +1,14 @@
+[Unit]
+Description=Telegram Geosearch Bot
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/user/geosearch_bot
+ExecStart=/home/user/geosearch_bot/venv/bin/python -m bot
+KillMode=process
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
