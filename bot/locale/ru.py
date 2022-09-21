@@ -57,6 +57,10 @@ kind_code = {
 
 error_img = 'Неверный запрос'
 
+error_key = 'Неверный токен Yandex maps'
+
+error_query = 'Неверный токен или ключ'
+
 key_updeted = 'Ключ успешно изменён:\n{key}'
 
 error_bd = 'Возникла ошибка, повторите запрос'

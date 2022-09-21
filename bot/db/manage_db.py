@@ -45,4 +45,7 @@ class DataB:
 
     async def get_key(self, id):
         key = await self._take_key(id)
-        return key[0]
+        if key:
+            return key[0]
+        else:
+            return False

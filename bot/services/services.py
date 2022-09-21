@@ -34,9 +34,13 @@ async def search_org(message, state):
                 break
 
     if not response:
-        response = await get_api_search_org(
-            await clientDB.get_key(message.from_user.id), message.text, type='biz'
-        )
+        key = await clientDB.get_key(message.from_user.id)
+        if not key:
+            return await message.answer(error_key)
+        try:
+            response = await get_api_search_org(key, message.text, type='biz')
+        except:
+            return await message.answer(error_query)
     await _select_obj(message, state, response, reply_org, 'org')
 
 
@@ -54,9 +58,13 @@ async def search_geo_name(message, state):
                 break
 
     if not response:
-        response = await get_api_search_org(
-            await clientDB.get_key(message.from_user.id), message.text, type='geo'
-        )
+        key = await clientDB.get_key(message.from_user.id)
+        if not key:
+            return await message.answer(error_key)
+        try:
+            response = await get_api_search_org(key, message.text, type='geo')
+        except:
+            return await message.answer(error_query)
     await _select_obj(message, state, response, reply_geo, 'geo')
 
 
@@ -77,9 +85,13 @@ async def get_near(message, state):
         data = data.get('geo')
         spn = [0.2, 0.2]
         kwargs = {'ll': data, 'spn': spn, 'type': 'biz'}
-        response = await get_api_search_org(
-            await clientDB.get_key(message.from_user.id), message.text, **kwargs
-        )
+        key = await clientDB.get_key(message.from_user.id)
+        if not key:
+            return await message.answer(error_key)
+        try:
+            response = await get_api_search_org(key, message.text, **kwargs)
+        except:
+            return await message.answer(error_query)
     await _select_obj(message, state, response, reply_org, 'org')
 
 
